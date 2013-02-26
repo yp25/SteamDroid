@@ -20,4 +20,21 @@
         android:layout_marginBottom="17dp"
         android:text="Start" />
 
+    <EditText
+        android:id="@+id/usernameInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/passwordInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/usernameInput"
+        android:layout_below="@+id/usernameInput"
+        android:layout_marginTop="15dp"
+        android:ems="10" />
+
 </RelativeLayout>

@@ -19,6 +19,9 @@ import android.graphics.Paint;
 import android.graphics.Picture;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -33,7 +36,23 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class SteamHUDInput extends ViewGroup {
+	public enum COMS_MSG {
+		REMOVE_NOTE,
+		ADD_NOTE
+	}
+	
 	public SteamHUDConfig config;
+	public Handler handler = new Handler(Looper.getMainLooper()) {
+		public void handleMessage(Message msg) {
+			switch (COMS_MSG.values()[msg.what])
+			{
+				case REMOVE_NOTE:
+					removeNote();
+					break;
+					
+			}
+		}
+	};
 	
 	public SteamHUDInput(Context context, SteamHUDConfig config) {
 		super(context);
@@ -47,9 +66,11 @@ public class SteamHUDInput extends ViewGroup {
 		WindowManager.LayoutParams params = (WindowManager.LayoutParams)getLayoutParams();
 		WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
 		
-		params.height = (int)(74 * config.notes.size() * config.scaleFactor);
+		params.height = (int)(74 * config.notes.size() * config.scaleFactor) + 1;
 		
 		wm.updateViewLayout(this, params);
+		
+		config.hudRender.invalidate();
 	}
 	
 	public void removeNote()
@@ -59,24 +80,28 @@ public class SteamHUDInput extends ViewGroup {
 		
 		boolean removing = false;
 		
+		int noteCount = 0;
 		for (int i=0;i<config.notes.size();i++)
 		{
 			SteamHUDNote note = config.notes.get(i);
 			if (!note.removing)
 			{
+				noteCount = config.notes.size() - i - 1;
 				note.removing = true;
 				break;
 			} else if (i == config.notes.size() - 1) {
 				return;
 			}
 		}
-	
+
 		WindowManager.LayoutParams params = (WindowManager.LayoutParams)getLayoutParams();
 		WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
 		
-		params.height = (int)(74 * config.notes.size() * config.scaleFactor);
+		params.height = (int)(74 * noteCount * config.scaleFactor) + 1;
 		
 		wm.updateViewLayout(this, params);
+		
+		config.hudRender.invalidate();
 	}
 	
 	@Override
@@ -99,7 +124,6 @@ public class SteamHUDInput extends ViewGroup {
 			removeNote();
 		}
 		
-		config.hudRender.invalidate();
 		return super.onTouchEvent(event);
 	}
 

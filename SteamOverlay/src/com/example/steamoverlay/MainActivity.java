@@ -8,14 +8,16 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 
 import uk.co.thomasc.steamkit.*;
 
 public class MainActivity extends Activity implements OnClickListener {
-    private String user = "DownsiderT";
-    private String pass = "dsjsdjsd";
+    //private String user = "DownsiderT";
+    //private String pass = "dsjsdjsd";
     
     Button buttonStart, buttonStop;
+    EditText usernameInput, passwordInput;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,9 @@ public class MainActivity extends Activity implements OnClickListener {
         
         buttonStart = (Button) findViewById(R.id.start_button);
         buttonStop = (Button) findViewById(R.id.stop_button);
+        
+        usernameInput = (EditText) findViewById(R.id.usernameInput);
+        passwordInput = (EditText) findViewById(R.id.passwordInput);
         
         buttonStart.setOnClickListener(this);
         buttonStop.setOnClickListener(this);

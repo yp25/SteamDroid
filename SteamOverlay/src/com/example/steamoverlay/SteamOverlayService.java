@@ -1,5 +1,7 @@
 package com.example.steamoverlay;
 
+import com.example.steamoverlay.SteamHUDInput.COMS_MSG;
+
 import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -86,12 +88,12 @@ public class SteamOverlayService extends Service {
 						if (!note.removing)
 						{
 							if (System.currentTimeMillis() >= note.deathTime)
-								note.removing = true;
+								hudViewInput.handler.sendEmptyMessage(COMS_MSG.REMOVE_NOTE.ordinal());
 						}
 					}
 					
 					try {
-						Thread.sleep(50);
+						Thread.sleep(100);
 					}
 					
 					catch (InterruptedException e) {
