@@ -117,6 +117,8 @@ public class SteamHUDInput extends ViewGroup {
 			note.deathTime = System.currentTimeMillis() + 2000;
 		
 			addNote(note);
+			
+			config.steamClient.pollMessages();
 		}
 		
 		if (event.getAction() == MotionEvent.ACTION_DOWN)

@@ -1,6 +1,7 @@
 package com.example.steamoverlay;
 
 import com.example.steamoverlay.SteamHUDInput.COMS_MSG;
+import com.example.steamoverlay.OpenSteamClient.OpenSteamClient;
 
 import android.annotation.TargetApi;
 import android.app.Notification;
@@ -30,6 +31,8 @@ public class SteamOverlayService extends Service {
 	public void onCreate() {
 		Toast.makeText(this, "SteamOverlay Service Created", Toast.LENGTH_LONG).show();
 		Log.d(TAG, "onCreate");
+		
+		OpenSteamClient.initLibs();
 		
 		config = new SteamHUDConfig();
 		config.scaleFactor = 1.5f;

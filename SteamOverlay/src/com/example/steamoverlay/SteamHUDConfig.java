@@ -4,14 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.example.steamoverlay.OpenSteamClient.OpenSteamClient;
+
 public class SteamHUDConfig {
-	public float scaleFactor = 1.0f;
+	public float scaleFactor;
 	
-	public List<SteamHUDNote> notes = new ArrayList<SteamHUDNote>();;
+	public List<SteamHUDNote> notes;
 	
 	public SteamHUDInput hudInput;
 	public SteamHUDRender hudRender;
-	public Random r = new Random();
+	public Random r;
+	
+	public OpenSteamClient steamClient;
+	
+	public SteamHUDConfig()
+	{
+		notes = new ArrayList<SteamHUDNote>();
+		steamClient = new OpenSteamClient();
+		r = new Random();
+		scaleFactor = 1.0f;
+	}
 	
 	public void cleanNotes()
 	{

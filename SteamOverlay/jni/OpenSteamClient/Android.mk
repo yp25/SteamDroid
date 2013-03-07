@@ -2,20 +2,25 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-MY_MODULE_DIR 		:= OpenSteamClient
+MY_MODULE_DIR 		:= opensteamclient
 
-APP_STL := gnustl_static
+LOCAL_CPP_EXTENSION := .cc .cpp
 
 LOCAL_MODULE    	:= $(MY_MODULE_DIR)
 LOCAL_SRC_FILES		:= \
-	$(subst $(MY_BASE_JNI_PATH)/$(MY_MODULE_DIR)/Source/,,$(wildcard $(MY_BASE_JNI_PATH)/$(MY_MODULE_DIR)/Source/*.c*)) \
-	$(subst $(MY_BASE_JNI_PATH)/$(MY_MODULE_DIR)/Source/Messages/,,$(wildcard $(MY_BASE_JNI_PATH)/$(MY_MODULE_DIR)/Source/Messages/*.c*)) \
-	$(subst $(MY_BASE_JNI_PATH)/$(MY_MODULE_DIR)/Source/Protobufs/,,$(wildcard $(MY_BASE_JNI_PATH)/$(MY_MODULE_DIR)/Source/Protobufs/*.c*))
+	$(subst $(MY_BASE_JNI_PATH)/$(MY_MODULE_DIR)/,,$(wildcard $(MY_BASE_JNI_PATH)/$(MY_MODULE_DIR)/Source/*.c*)) \
+	$(subst $(MY_BASE_JNI_PATH)/$(MY_MODULE_DIR)/,,$(wildcard $(MY_BASE_JNI_PATH)/$(MY_MODULE_DIR)/Source/Messages/*.c*)) \
+	$(subst $(MY_BASE_JNI_PATH)/$(MY_MODULE_DIR)/,,$(wildcard $(MY_BASE_JNI_PATH)/$(MY_MODULE_DIR)/Source/Protobufs/*.c*))
 LOCAL_LDLIBS 		:= -lm -llog
 LOCAL_C_INCLUDES 	:= \
-	$(MY_BASE_JNI_PATH)/$(MY_MODULE_DIR)/Include
+	$(MY_BASE_JNI_PATH) \
+	$(MY_BASE_JNI_PATH)/$(MY_MODULE_DIR)/Include \
+	$(MY_BASE_JNI_PATH)/Protobufs/src/
+
+LOCAL_SHARED_LIBRARIES := \
+    libcryptopp
 	
-LOCAL_CFLAGS 		:= -DNULL=0 -DSOCKLEN_T=socklen_t
-LOCAL_CPPFLAGS 		:= -DBSD=1 -fexceptions -frtti
+LOCAL_STATIC_LIBRARIES	:= \
+	protobufs
 	
 include $(BUILD_STATIC_LIBRARY)

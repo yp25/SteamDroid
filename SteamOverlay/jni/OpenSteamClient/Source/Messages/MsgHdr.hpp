@@ -4,6 +4,7 @@
 #include <OpenSteamClient/Enums.hpp>
 #include "../InputStream.hpp"
 #include "../OutputStream.hpp"
+#include <stdint.h>
 
 namespace Sc
 {
@@ -28,8 +29,8 @@ namespace Sc
 	inline MsgHdr::MsgHdr()
 	{
 		msg = EMsg_Invalid;
-		targetJobId = UINT64_MAX;
-		sourceJobId = UINT64_MAX;
+		targetJobId = UINT_MAX;
+		sourceJobId = UINT_MAX;
 	}
 
 	inline MsgHdr::MsgHdr(InputStream &stream)

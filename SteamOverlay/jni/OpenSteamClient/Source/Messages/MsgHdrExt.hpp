@@ -36,8 +36,8 @@ namespace Sc
 		msg = EMsg_Invalid;
 		headerSize = 36;
 		headerVersion = 2;
-		targetJobId = UINT64_MAX;
-		sourceJobId = UINT64_MAX;
+		targetJobId = UINT_MAX;
+		sourceJobId = UINT_MAX;
 		headerCanary = 239;
 		sessionId = 0;
 	}

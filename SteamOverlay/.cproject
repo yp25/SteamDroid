@@ -18,7 +18,7 @@
 					<folderInfo id="com.android.toolchain.gcc.1118353781.1106558898" name="/" resourcePath="">
 						<toolChain id="com.android.toolchain.gcc.1508429537" name="com.android.toolchain.gcc" superClass="com.android.toolchain.gcc">
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="com.android.targetPlatform.2112841507" name="Android Platform" osList="all" superClass="com.android.targetPlatform"/>
-							<builder arguments="C:\ndk\android-ndk-r7-crystax-5\ndk-build" command="bash" id="com.android.builder.557706011" keepEnvironmentInBuildfile="false" managedBuildOn="false" superClass="com.android.builder">
+							<builder arguments="C:\ndk\android-ndk-r8d\ndk-build" command="bash" id="com.android.builder.557706011" keepEnvironmentInBuildfile="false" managedBuildOn="false" superClass="com.android.builder">
 								<outputEntries>
 									<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="outputPath" name="libs"/>
 								</outputEntries>
@@ -68,4 +68,5 @@
 			<resource resourceType="PROJECT" workspacePath="/SteamOverlay"/>
 		</configuration>
 	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>
